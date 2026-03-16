@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 20% 96%;
+    --foreground: 0 0% 6%;
+    --card: 40 33% 98%;
+    --card-foreground: 0 0% 6%;
+    --popover: 40 33% 98%;
+    --popover-foreground: 0 0% 6%;
+    --primary: 35 45% 65%;
+    --primary-foreground: 195 55% 10%;
+    --secondary: 195 55% 15%;
+    --secondary-foreground: 40 33% 98%;
+    --muted: 40 10% 90%;
+    --muted-foreground: 0 0% 35%;
+    --accent: 35 45% 65%;
+    --accent-foreground: 195 55% 10%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 35 30% 75%;
+    --input: 35 30% 75%;
+    --ring: 35 45% 65%;
+    --radius: 0px;
+
+    /* Custom tokens */
+    --teal-950: 195 42% 5%;
+    --teal-900: 198 55% 10%;
+    --teal-800: 198 52% 15%;
+    --teal-700: 198 52% 23%;
+    --teal-500: 198 50% 34%;
+    --teal-300: 198 38% 53%;
+
+    --gold-600: 35 42% 51%;
+    --gold-500: 37 45% 57%;
+    --gold-400: 35 50% 65%;
+    --gold-300: 35 50% 74%;
+    --gold-200: 30 55% 83%;
+
+    --warm-100: 30 11% 96%;
+    --warm-50: 30 20% 98%;
+
+    --text-900: 0 0% 6%;
+    --text-700: 0 0% 16%;
+    --text-500: 0 0% 35%;
+    --text-300: 0 0% 60%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+  h1, h2, h3 {
+    font-family: 'Cormorant Garamond', serif;
+  }
+}
+
+/* Noise texture overlay for dark sections */
+.noise-overlay {
+  position: relative;
+}
+.noise-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  z-index: 1;
+}
+.noise-overlay > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Gold shimmer on hover */
+@keyframes gold-shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.btn-gold-shimmer:hover {
+  background-size: 200% 100%;
+  animation: gold-shimmer 1.5s ease-in-out;
+}
+
+/* Gold decorative line */
+.gold-line {
+  width: 40px;
+  height: 1px;
+  background: #d4af7a;
+}
+
+/* Corner marks */
+.corner-marks {
+  position: relative;
+}
+.corner-marks::before,
+.corner-marks::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: rgba(212,175,122,0.35);
+}
+.corner-marks::before {
+  top: -1px;
+  left: -1px;
+  border-top: 1px solid;
+  border-left: 1px solid;
+}
+.corner-marks::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+}
+
+/* Section dark gradient */
+.section-dark {
+  background: linear-gradient(135deg, #0a1e28 0%, #0f2f3d 50%, #0a1e28 100%);
+}
+
+/* Section warm */
+.section-warm {
+  background-color: #f5f4f2;
+}
+
+/* Gold separator */
+.gold-separator {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,175,122,0.4), transparent);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #060f14;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(212,175,122,0.3);
+  border-radius: 3px;
+}
